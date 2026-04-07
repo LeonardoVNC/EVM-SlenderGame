@@ -7,7 +7,7 @@ public class PlayerLook : MonoBehaviour
     public Transform playerCamera;
 
     private float xRotation = 0f;
-    private float lookRange = 4f;
+    private float collectRange = 4f;
     private Vector2 mouseInput;
 
     private Vector3 canPosition;
@@ -36,9 +36,9 @@ public class PlayerLook : MonoBehaviour
         transform.Rotate(Vector3.up * mouseInput.x * mouseSensibility * Time.deltaTime);
     }
 
-    public void OnTest() {
+    public void OnCollect() {
         Ray ray = new Ray(playerCamera.position, playerCamera.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, lookRange)) {
+        if (Physics.Raycast(ray, out RaycastHit hit, collectRange)) {
             if (hit.collider.TryGetComponent<Notes>(out Notes nota)) {
                 Destroy(nota.gameObject);
             }
