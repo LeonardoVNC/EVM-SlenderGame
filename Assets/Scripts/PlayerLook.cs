@@ -7,6 +7,7 @@ public class PlayerLook : MonoBehaviour
     public Transform playerCamera;
 
     private float xRotation = 0f;
+    private float lookRange = 4f;
     private Vector2 mouseInput;
 
     private Vector3 canPosition;
@@ -33,5 +34,14 @@ public class PlayerLook : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f,0f);
         transform.Rotate(Vector3.up * mouseInput.x * mouseSensibility * Time.deltaTime);
+    }
+
+    public void OnTest() {
+        Ray ray = new Ray(playerCamera.position, playerCamera.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, lookRange)) {
+            if (hit.collider.TryGetComponent<Notes>(out Notes nota)) {
+                Destroy(nota.gameObject);
+            }
+        }
     }
 }
