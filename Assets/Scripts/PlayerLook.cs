@@ -41,6 +41,7 @@ public class PlayerLook : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, collectRange)) {
             if (hit.collider.TryGetComponent<Notes>(out Notes nota)) {
                 Destroy(nota.gameObject);
+                GameManager.Instance.AddNote();
             }
         }
     }
