@@ -44,8 +44,8 @@ public class Notes : MonoBehaviour
                 mr.material = highlightMaterial;
             }
         } else {
-            foreach (MeshRenderer mr in meshRenderer) {
-                mr.material = originalMaterial[0];
+            for (int i = 0; i < meshRenderer.Length; i++) {
+                meshRenderer[i].material = originalMaterial[i];
             }
         }
     }
