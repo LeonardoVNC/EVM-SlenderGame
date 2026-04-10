@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set;}
 
+    private Slender slender;
+
     private int notesCount = 0;
 
     private void Awake() {
@@ -13,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        slender = FindAnyObjectByType<Slender>();
     }
 
     public int GetNotesCount() {
@@ -21,6 +23,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void AddNote() {
-        notesCount++;
+        slender.cambiarDificultad(++notesCount);
     }
 }

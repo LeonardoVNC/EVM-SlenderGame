@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         MovePlayer();
-        Debug.Log(rb.linearVelocity.y);
         isJumping = rb.linearVelocity.y >= 0.1f; 
     }
 
