@@ -33,6 +33,10 @@ public class Slender : MonoBehaviour
     public void cambiarDificultad() {
         int notas = GameManager.Instance.GetNotesCount();
         Debug.Log("Notas:" +notas + " Vel:" + navMeshAgentSlender.speed);
-        navMeshAgentSlender.speed = baseSpeed + (notas*0.5f);
+        float newVel = baseSpeed + (notas*0.5f);
+        navMeshAgentSlender.speed = newVel;
+        if (newVel >= 2.5f) {
+            slenderAnimator.SetBool("isRunning", true);
+        }
     }
 }
