@@ -82,8 +82,15 @@ public class Slender : MonoBehaviour
 
         playerMovement.enabled = false;
         playerLook.enabled = false;
+        playerLook.setActive(false);
 
         Vector3 playerLookAtSlender = transform.position + (Vector3.up*2f);
         playerLook.transform.LookAt(playerLookAtSlender);
+
+        Invoke("GameOver", 2f);
+    }
+
+    private void GameOver() {
+        GameManager.Instance.GameOver();
     }
 }

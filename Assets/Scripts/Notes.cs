@@ -24,6 +24,8 @@ public class Notes : MonoBehaviour
 
     void Update()
     {
+        if (playerCamPosition == null) return;
+
         Ray ray = new Ray(playerCamPosition.transform.position, playerCamPosition.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, lookRange)) {
             if (hit.collider.gameObject == this.gameObject) {

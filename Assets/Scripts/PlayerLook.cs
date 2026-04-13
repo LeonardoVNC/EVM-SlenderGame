@@ -11,6 +11,7 @@ public class PlayerLook : MonoBehaviour
     private Vector2 mouseInput;
 
     private Vector3 canPosition;
+    private bool isActive = true;
 
     void Start()
     {
@@ -21,12 +22,20 @@ public class PlayerLook : MonoBehaviour
 
     void Update()
     {
-        LookAround();
+        if (isActive) {
+            LookAround();
+        }
+    }
+    
+    public void setActive (bool active) {
+        isActive = active;
     }
 
     public void OnLook(InputValue data){
-        mouseInput = data.Get<Vector2>();
-        LookAround();
+        if(isActive) {
+            mouseInput = data.Get<Vector2>();
+            LookAround();
+        }
     }
 
     public void LookAround(){
