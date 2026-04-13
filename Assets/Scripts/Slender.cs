@@ -8,6 +8,7 @@ public class Slender : MonoBehaviour
     private PlayerLook playerLook;
     private SkinnedMeshRenderer slenderMeshRenderer;
     private Animator slenderAnimator;
+    private AudioSource audioSource;
 
     private float baseSpeed = 0.5f;
     private float catchDistance = 2f;
@@ -21,6 +22,7 @@ public class Slender : MonoBehaviour
         playerLook = FindAnyObjectByType<PlayerLook>();
         slenderMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         slenderAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         SetEnemyState(false);
         navMeshAgentSlender.speed = baseSpeed;
@@ -54,7 +56,12 @@ public class Slender : MonoBehaviour
     private void SetEnemyState(bool state) {
         isActive = state;
         slenderMeshRenderer.enabled = state;
-        navMeshAgentSlender.enabled = state; 
+        navMeshAgentSlender.enabled = state;
+        if (state) {
+            audioSource.volume = 1f;
+        } else {
+            audioSource.volume = 0f;
+        }
     }
 
     public void VerificarDistanciaConJugador() {
