@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoiseVideo
   noiseImage: {fileID: 351193994}
-  slenderTransform: {fileID: 550778768}
+  slender: {fileID: 550778769}
   noiseVideoPlayer: {fileID: 53357232}
 --- !u!1 &410087039
 GameObject:
@@ -901,11 +901,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &550778768 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1010010733671478586, guid: c0ec2cd63f93487d92d6623d393c83ba, type: 3}
-  m_PrefabInstance: {fileID: 550778765}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &550778769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,7 +1034,7 @@ GameObject:
   - component: {fileID: 661784452}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
