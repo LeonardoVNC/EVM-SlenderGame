@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Slender : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Slender : MonoBehaviour
     private float catchDistance = 2f;
     private bool isActive = false;
     private bool isGameOver = false;
+
+    public Transform[] teleportDestinations;
+    private bool isTeleporting = false;
 
     void Start()
     {
@@ -68,6 +72,8 @@ public class Slender : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, playerMovement.transform.position);
         if (distanceToPlayer <= catchDistance) {
             AtraparJugador();
+        } else if (!isTeleporting && distanceToPlayer >= 25f) {
+            StartCoroutine(nameof(Teleport));
         }
     }
 
@@ -92,5 +98,24 @@ public class Slender : MonoBehaviour
 
     private void GameOver() {
         GameManager.Instance.GameOver();
+    }
+
+    IEnumerator Teleport() {
+        Transform closestPoint = null;
+        isTeleporting = true;
+        float minDistance = float.MaxValue;
+        for  (int i=0; i<teleportDestinations.Length; i++) {
+            Transform point = teleportDestinations[i];
+            float distance = Vector3.Distance(playerMovement.transform.position, point.position);
+            if (distance > 7f && distance < minDistance) {
+                minDistance = distance;
+                closestPoint = point;
+            }
+        }
+        if (closestPoint != null) {
+            transform.position = closestPoint.position;
+        }
+        isTeleporting = false;
+        yield return new WaitForSeconds(5f);
     }
 }
