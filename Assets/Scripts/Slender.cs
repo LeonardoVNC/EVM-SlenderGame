@@ -43,6 +43,10 @@ public class Slender : MonoBehaviour
         VerificarDistanciaConJugador();
     }
 
+    public bool isEnabled() {
+        return isActive;
+    }
+
     public void cambiarDificultad(int notas) {
         if (!isActive && notas > 0) {
             Debug.Log("Se levanta otra veeez");
